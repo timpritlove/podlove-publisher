@@ -237,6 +237,13 @@ class Builder {
 			} );
 
 			$(document).ready(function () {
+
+				url = $("#<?php echo $this->field_id ?>").val();
+				template_source = $("#preview_template").html().replace( '{url}', url );
+
+				$("#<?php echo $this->field_id ?>").parent().find("img").attr("src", url);
+				$("#preview_template").html(template_source);
+
 				$("#podlove_cover_preview").on( 'click', function() {
 					var image_template = $("#preview_template").html();
 					var container = $(".podlove_cover_preview_container");
