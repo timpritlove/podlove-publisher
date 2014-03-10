@@ -230,12 +230,15 @@ class Builder {
 		(function($) {
 			$("#<?php echo $this->field_id ?>").on( 'change', function() {
 				url = $(this).val();
+				template_source = $("#preview_template").html().replace( '{url}', url );
+
 				$(this).parent().find("img").attr("src", url);
+				$("#preview_template").html(template_source);
 			} );
 
 			$(document).ready(function () {
 				$("#podlove_cover_preview").on( 'click', function() {
-					var image_template = $("#test").html();
+					var image_template = $("#preview_template").html();
 					var container = $(".podlove_cover_preview_container");
 
 					if ( $(".podlove_background_color_black").css('background-color') == 'rgb(0, 0, 0)' ) {
@@ -256,8 +259,8 @@ class Builder {
 			});			
 		})(jQuery);
 		</script>
-		<script type="text/template" id="test">
-			<img src="<?php echo $this->field_value; ?>" <?php echo $img_html_attributes ?> class="podlove_cover_image podlove_background_color_{color}" />
+		<script type="text/template" id="preview_template">
+			<img src="{url}" <?php echo $img_html_attributes ?> class="podlove_cover_image podlove_background_color_{color}" />
 		</script>
 		<?php
 	}
