@@ -254,3 +254,23 @@ td.podlove-avatar-column, th.podlove-avatar-column {
 td.podlove-contributor-column {
 	white-space: nowrap;
 }
+
+/* Cover Preview */
+
+.podlove_cover_preview_container {
+	width: 300px;
+	height: 300px;
+}
+
+.podlove_background_color_gray {
+	background-color: gray;
+}
+
+.podlove_background_color_white {
+	background-color: white;
+}
+
+#podlove_cover_preview {
+	cursor: pointer;
+}
+

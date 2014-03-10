@@ -222,7 +222,9 @@ class Builder {
 		<div>
 			<input type="text" name="<?php echo $this->field_name; ?>" id="<?php echo $this->field_id; ?>" value="<?php echo esc_attr( $this->field_value ); ?>" <?php echo $this->html_attributes; ?>>
 			<br>
-			<img src="<?php echo $this->field_value; ?>" <?php echo $img_html_attributes ?> />
+			<div class="podlove_cover_preview_container">
+				<img src="<?php echo $this->field_value; ?>" <?php echo $img_html_attributes ?> class="podlove_cover_image podlove_background_color_black" />
+			</div>	
 		</div>
 		<script type="text/javascript">
 		(function($) {
@@ -230,7 +232,32 @@ class Builder {
 				url = $(this).val();
 				$(this).parent().find("img").attr("src", url);
 			} );
+
+			$(document).ready(function () {
+				$("#podlove_cover_preview").on( 'click', function() {
+					var image_template = $("#test").html();
+					var container = $(".podlove_cover_preview_container");
+
+					if ( $(".podlove_background_color_black").css('background-color') == 'rgb(0, 0, 0)' ) {
+						container.animate({width: '300px', height: '300px'});
+						container.html( image_template.replace( '{color}', 'black' ) );
+						$(".podlove_cover_image").css( 'padding', '0px' );
+						$(".podlove_background_color_black").css( 'background-color', 'transparent' );
+						$("#podlove_cover_preview").html('Advanced Preview &raquo;');
+					} else {
+						container.append( image_template.replace( '{color}', 'gray' ) );
+						container.append( image_template.replace( '{color}', 'white' ) );
+						container.animate({width: '1100px', height: '350px'});
+						$(".podlove_cover_image").css( 'padding', '25px' );
+						$(".podlove_background_color_black").css( 'background-color', 'black' );
+						$("#podlove_cover_preview").html('Advanced Preview &laquo;');
+					}
+				});
+			});			
 		})(jQuery);
+		</script>
+		<script type="text/template" id="test">
+			<img src="<?php echo $this->field_value; ?>" <?php echo $img_html_attributes ?> class="podlove_cover_image podlove_background_color_{color}" />
 		</script>
 		<?php
 	}

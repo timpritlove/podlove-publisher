@@ -51,7 +51,7 @@ class Media extends Tab {
 
 			$wrapper->image( 'cover_image', array(
 				'label'        => __( 'Cover Art URL', 'podlove' ),
-				'description'  => __( 'JPEG or PNG. At least 1400 x 1400 pixels.', 'podlove' ),
+				'description'  => __( 'JPEG or PNG. At least 1400 x 1400 pixels.<br /> <span id="podlove_cover_preview">Advanced Preview &raquo;</span>', 'podlove' ),
 				'html'         => array( 'class' => 'regular-text' ),
 				'image_width'  => 300,
 				'image_height' => 300
